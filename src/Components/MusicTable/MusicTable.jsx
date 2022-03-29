@@ -15,7 +15,8 @@ const MusicTable = (props) => {
     getData();
   },[]);
     return ( 
-        <table width="800">
+      <div className="container p-5">
+        <table className="table table-hover">
           <thead>
             <tr>
               <th></th>
@@ -23,6 +24,7 @@ const MusicTable = (props) => {
               <th>Album</th>
               <th>Artist</th>
               <th>Genre</th>
+              <th>Release Date</th>
             </tr>
           </thead>
           <tbody>
@@ -34,6 +36,7 @@ const MusicTable = (props) => {
                 <td>{music.album}</td>
                 <td>{music.artist}</td>
                 <td>{music.genre}</td>                
+                <td>{music.releaseDate}</td>                
               </tr>
               )
             })
@@ -41,6 +44,7 @@ const MusicTable = (props) => {
             }            
           </tbody>
         </table>
+      </div>
      );
 }
  

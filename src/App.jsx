@@ -7,8 +7,7 @@ import SearchBar from './Components/SearchBar/SearchBar'
 function App() {
  
   return (
-      <div className="container-fluid">
-        <SearchBar />
+      <div className="container-fluid">        
         <MusicTable />         
       </div>
   );

@@ -7,12 +7,9 @@ const SearchBar = (props) => {
 
     function handleSubmit(event){
         event.preventDefault();
-        let newSearch = {
-            searchTerm
-        }
-        //props.findSong(newSearch);
+        props.getSearchTerm(searchTerm);
         setSearchTerm('');
-        console.log(`Search term is ${searchTerm}`);
+        //console.log(`searching for ${searchTerm}`)
         }
 
     return (         
@@ -20,7 +17,7 @@ const SearchBar = (props) => {
             <h2>Find A Song</h2>
             <form className="form-horizontal" onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label className="control-label">Enter a Title, Album, Artist or Genre to search by:</label>
+                    <label className="control-label">Enter a Title, Album, Artist, Genre or Release Date to search by:</label>
                     <input type="text" className="form-control" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)} />
                 </div>                    
                 <div className="form-group">

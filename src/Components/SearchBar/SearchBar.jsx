@@ -13,16 +13,13 @@ const SearchBar = (props) => {
         }
 
     return (         
-        <div className="container">
-            <h2>Find A Song</h2>
-            <form className="form-horizontal" onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label className="control-label">Enter a Title, Album, Artist, Genre or Release Date to search by:</label>
-                    <input type="text" className="form-control" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)} />
-                </div>                    
-                <div className="form-group">
-                    <input type="submit" className="btn btn-warning small p-1 pl-3 pr-3 m-2" value="Find Song" />
-                </div>
+        <div className="container">           
+            <form className="form-inline" onSubmit={handleSubmit}>
+                <div className="input-group mb-3">
+                    <label> <h2>Find A Song</h2></label>
+                    <input type="text" className="form-control rounded-start" placeholder="Search by Title, Album, Artist, Genre or Release Date" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)} />
+                    <button className="btn btn-success" type="submit">Search</button>
+                </div> 
             </form>
         </div>
      );

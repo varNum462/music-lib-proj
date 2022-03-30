@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import './MusicTable.css'
 import SearchBar from '../SearchBar/SearchBar';
 
 const MusicTable = (props) => {
@@ -15,9 +16,9 @@ const MusicTable = (props) => {
   }
   
   function getSearchTerm(searchFor){
-    //console.log(`Searching for ${searchFor}`)
+    searchFor = searchFor.toLowerCase();  //console.log(`Searching for ${searchFor}`)
     let filterMusic = musicData.filter(function(element){
-      if(element.title.toLowerCase().includes(searchFor) || element.artist.toLowerCase().includes(searchFor) || element.album.toLowerCase().includes(searchFor) || element.genre.toLowerCase().includes(searchFor) || element.releaseDate.toLowerCase().includes(searchFor)){
+      if(element.title.toLowerCase().match(searchFor) || element.artist.toLowerCase().match(searchFor) || element.album.toLowerCase().match(searchFor) || element.genre.toLowerCase().match(searchFor) || element.releaseDate.match(searchFor)){
         return true;
       }else{
         return false;

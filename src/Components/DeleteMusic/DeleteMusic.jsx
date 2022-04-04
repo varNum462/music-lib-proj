@@ -1,29 +1,28 @@
-import './DeleteMusic.css'
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
-const DeleteSong = (props) => {
+const DeleteMusic = (props) => {
+
+       const [songId,setSongId] = useState('');
+           
+        useEffect(() => {
+            async function handleSubmit() {
+                await axios.delete('http://localhost:5005/api/songs/${songId}');
+                console.log('Delete successful');
+            }
+        }, []);
+
+
+
     return ( 
-        <div className="modal" id="deleteSong">
-            <div className="modal-dialog">
-                <div className="modal-content">
-
-               
-                <div className="modal-header">
-                    <h4 className="modal-title">Delete A Song</h4>
-                    <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-               
-                <div className="modal-body">
-                    Are you sure you want to delete the following song?
-                </div>
-                
-                <div className="modal-footer">
-                    <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
-
-                </div>
-            </div>
+        <div> 
+            <form className="form-horizontal" > 
+                <input type="hidden" value={songId} onSubmit={(event) => setSongId(event.target.value)} />           
+                <input type="submit" className="btn btn-danger" value="DELETE"  />
+            </form>
         </div>
-    );
+     );
+
 }
  
-export default DeleteSong;
+export default DeleteMusic;

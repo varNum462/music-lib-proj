@@ -61,7 +61,7 @@ const MusicTable = (props) => {
                 <td>{music.artist}</td>
                 <td>{music.genre}</td>                
                 <td>{music.releaseDate}</td>             
-                <td><button className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteSong">DELETE</button></td>                
+                <td><DeleteSong /></td>                
               </tr>
               )
             })

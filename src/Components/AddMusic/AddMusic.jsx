@@ -1,5 +1,4 @@
-import { useState,useEffect } from "react";
-import './AddMusic.css'
+import { useState } from "react";
 import axios from 'axios';
 
 const AddMusic = (props) => {
@@ -25,7 +24,7 @@ const AddMusic = (props) => {
     
 
     return ( 
-        <div id="addSong mt-5"> 
+        <div id="addSong" className="mt-3">  
             <div className="container mt-5">
            
                 <h2 className="mt-5">Add A Song</h2>

@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './MusicTable.css'
 import SearchBar from '../SearchBar/SearchBar';
+import DeleteSong from '../DeleteMusic/DeleteMusic';
+import AddMusic from '../AddMusic/AddMusic';
 
 const MusicTable = (props) => {
 
@@ -9,11 +11,11 @@ const MusicTable = (props) => {
   const [searchList,setSearchList] = useState([{}]);
 
   async function getMusic() {
-     let response = await axios.get('http://www.devcodecampmusiclibrary.com/api/music');
+     let response = await axios.get('http://localhost:5005/api/songs');
       console.log(response.data); 
       setMusicData(response.data);  
       setSearchList(response.data);
-  }
+  }  
   
   function getSearchTerm(searchFor){
     searchFor = searchFor.toLowerCase();  //console.log(`Searching for ${searchFor}`)
@@ -32,6 +34,8 @@ const MusicTable = (props) => {
     getMusic();
   },[]);
 
+  
+
     return ( 
       <div className="container p-5">
         <SearchBar getSearchTerm={getSearchTerm} />
@@ -44,6 +48,7 @@ const MusicTable = (props) => {
               <th>Artist</th>
               <th>Genre</th>
               <th>Release Date</th>
+              <th>&nbsp;</th>              
             </tr>
           </thead>
           <tbody>
@@ -55,15 +60,18 @@ const MusicTable = (props) => {
                 <td>{music.album}</td>
                 <td>{music.artist}</td>
                 <td>{music.genre}</td>                
-                <td>{music.releaseDate}</td>                
+                <td>{music.releaseDate}</td>             
+                <td><button className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteSong">DELETE</button></td>                
               </tr>
               )
             })
               
             }            
           </tbody>
-        </table>
+        </table>        
+        <AddMusic addNewSong="addNewSong" />     
       </div>
+      
      );
 }
  

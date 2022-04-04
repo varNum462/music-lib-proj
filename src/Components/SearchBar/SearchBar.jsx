@@ -13,7 +13,7 @@ const SearchBar = (props) => {
         }
 
     return (         
-        <div className="container">           
+        <div className="container d-flex justify-content-between">           
             <form className="form-inline" onSubmit={handleSubmit}>
                 <div className="input-group mb-3">
                     <label> <h2>Find A Song</h2></label>
@@ -21,6 +21,7 @@ const SearchBar = (props) => {
                     <button className="btn btn-success" type="submit">Search</button>
                 </div> 
             </form>
+            <div><a href="#addSong" className="btn btn-warning">ADD SONG</a></div>
         </div>
      );
 }

@@ -1,32 +1,34 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import './AddMusic.css'
+import axios from 'axios';
 
 const AddMusic = (props) => {
 
-    const [songTitle,setSongTitle] = useState('');
-    const [songAlbum,setSongAlbum] = useState('');
-    const [songArtist,setSongArtist] = useState('');
-    const [songGenre,setSongGenre] = useState('');
+       const [songTitle,setSongTitle] = useState('');
+        const [songAlbum,setSongAlbum] = useState('');
+        const [songArtist,setSongArtist] = useState('');
+        const [songGenre,setSongGenre] = useState('');
+        const [songReleaseDate,setSongReleaseDate] = useState('');
     
-    function handleSubmit(event){
-        event.preventDefault();
-        let newSong = {
-            songTitle,
-            songAlbum,
-            songArtist,
-            songGenre
-        }
-        props.addNewSong(newSong);
-        setSongTitle("");
-        setSongAlbum("");
-        setSongArtist("");
-        setSongGenre("");
-    }
+        async function handleSubmit(){
+            axios.post(`http://localhost:5005/api/songs`, {
+                "title": songTitle,
+                "album": songAlbum,
+                "artist": songArtist,
+                "genre": songGenre,
+                "releaseDate": songReleaseDate
+            })
+            .then(response => {
+                console.log(response);
+            });
+        };
+    
 
     return ( 
-        <div>
-            <div className="m-3 container">
-                <h2>Add A Song</h2>
+        <div id="addSong mt-5"> 
+            <div className="container mt-5">
+           
+                <h2 className="mt-5">Add A Song</h2>
                 <form className="form-horizontal" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label className="control-label">Title</label>
@@ -45,13 +47,17 @@ const AddMusic = (props) => {
                         <input type="text" className="form-control" value={songGenre} onChange={(event) => setSongGenre(event.target.value)} />
                     </div>
                     <div className="form-group">
+                        <label className="control-label">Release Date</label>
+                        <input type="date" className="form-control" value={songReleaseDate} onChange={(event) => setSongReleaseDate(event.target.value)} />
+                    </div>
+                    <div className="form-group">
                         <input type="submit" className="btn btn-warning" value="Add Song" />
                     </div>
                 </form>
-            </div>
-            <hr />
+            </div>            
         </div>
      );
+
 }
  
 export default AddMusic;
